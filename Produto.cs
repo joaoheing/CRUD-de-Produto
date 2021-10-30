@@ -4,32 +4,20 @@ namespace MvcProduto.Models
 {
     class Produto
     {
-        public int id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-        public string nome
-        {
-            get { return nome; }
-            set { nome = value; }
-        }
-        public double preco
-        {
-            get { return preco; }
-            set { preco = value; }
-        }
+        public int ID {get; set;}
+        public string Nome {get; set;}
+        public double Preco {get; set;}
 
         public Produto(int id, string nome, double preco)
         {
-            this.id = id;
-            this.nome = nome;
-            this.preco = preco;
+            this.ID = id;
+            this.Nome = nome;
+            this.Preco = preco;
         }
         public Produto(string nome, double preco)
         {
-            this.nome = nome;
-            this.preco = preco;
+            this.Nome = nome;
+            this.Preco = preco;
         }
 
     }

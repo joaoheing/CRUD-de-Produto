@@ -13,7 +13,8 @@ namespace MvcHub
             Listar = 1,
             Inserir = 2,
             Editar = 3,
-            Remover = 4
+            Remover = 4,
+            Sair = 5
 
         }
         public Hub()
@@ -24,32 +25,75 @@ namespace MvcHub
         public void Listar()
         {
             List<Produto> produtos = banco.Listar();
-            foreach(Produto p in produtos) {
-                Console.WriteLine("\t{0}\t{1}\t{2}", p.id, p.nome, p.preco);
+            foreach (Produto p in produtos)
+            {
+                Console.WriteLine("\t{0}\t{1}\t{2}", p.ID, p.Nome, p.Preco);
             }
+        }
+
+        public void Inserir()
+        {
+            Console.WriteLine("Digite o nome do produto");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Digite o preço do produto");
+            double preco = double.Parse(Console.ReadLine());
+            banco.Inserir(nome, preco);
+        }
+
+        public void Excluir(){
+            Console.WriteLine("Digite o id do produto que deseja excluir");
+            int numeroDesejado = int.Parse(Console.ReadLine());
+            banco.Remover(numeroDesejado);
+        }
+
+        public void Editar(){
+            Console.WriteLine("Digite o id do produto que deseja editar");
+            int numeroDesejado = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o novo nome");
+            string nomeDesejado = Console.ReadLine();
+            Console.WriteLine("Digite o novo preço");
+            float precoDesejado = float.Parse(Console.ReadLine());
+
+            banco.Editar(numeroDesejado,nomeDesejado,precoDesejado);
         }
 
         public void ApresentarMenu()
         {
-            Console.WriteLine("Seja bem-vindo!!, o que você gostaria de fazer?");
-            Console.WriteLine("1- Listar produtos");
-            Console.WriteLine("2- Adicionar um produto");
-            Console.WriteLine("3- Editar um produto");
-            Console.WriteLine("4- Excluir um produto");
-
-            int InputUsuario = Int32.Parse(Console.ReadLine());
-            switch (InputUsuario)
+            bool apresentarMenu = true;
+            
+         while(apresentarMenu)
             {
-                case ((int)Inputs.Listar):
-                    this.Listar();
-                    break;
-                case ((int)Inputs.Inserir):
-                    break;
-                case ((int)Inputs.Editar):
-                    break;
-                case ((int)Inputs.Remover):
-                    break;
+                Console.WriteLine("Seja bem-vindo!!, o que você gostaria de fazer?");
+                Console.WriteLine("1- Listar produtos");
+                Console.WriteLine("2- Adicionar um produto");
+                Console.WriteLine("3- Editar um produto");
+                Console.WriteLine("4- Excluir um produto");
+                Console.WriteLine("5- Sair");
+                Console.WriteLine("\n");
+
+                int InputUsuario = int.Parse(Console.ReadLine());
+
+                switch (InputUsuario)
+                {
+                    case ((int)Inputs.Listar):
+                        this.Listar();
+                        break;
+                    case ((int)Inputs.Inserir):
+                        this.Inserir();
+                        break;
+                    case ((int)Inputs.Editar):
+                        this.Editar();
+                        break;
+                    case ((int)Inputs.Remover):
+                        this.Excluir();
+                        break;
+                    case ((int)Inputs.Sair):
+                        apresentarMenu = false;
+                        break;
+                }
+                Console.WriteLine("\n");
             }
+
         }
     }
 }
