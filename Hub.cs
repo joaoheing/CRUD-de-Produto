@@ -40,21 +40,20 @@ namespace MvcHub
             banco.Inserir(nome, preco);
         }
 
-        public void Excluir(){
+        public void Remover(){
             Console.WriteLine("Digite o id do produto que deseja excluir");
-            int numeroDesejado = int.Parse(Console.ReadLine());
-            banco.Remover(numeroDesejado);
+            int numero = int.Parse(Console.ReadLine());
+            banco.Remover(numero);
         }
 
         public void Editar(){
             Console.WriteLine("Digite o id do produto que deseja editar");
-            int numeroDesejado = int.Parse(Console.ReadLine());
+            int numero = int.Parse(Console.ReadLine());
             Console.WriteLine("Digite o novo nome");
-            string nomeDesejado = Console.ReadLine();
+            string nome = Console.ReadLine();
             Console.WriteLine("Digite o novo preço");
-            float precoDesejado = float.Parse(Console.ReadLine());
-
-            banco.Editar(numeroDesejado,nomeDesejado,precoDesejado);
+            double preco = Math.Round(double.Parse(Console.ReadLine()),2);
+            banco.Editar(numero,nome,preco);
         }
 
         public void ApresentarMenu()
@@ -85,7 +84,7 @@ namespace MvcHub
                         this.Editar();
                         break;
                     case ((int)Inputs.Remover):
-                        this.Excluir();
+                        this.Remover();
                         break;
                     case ((int)Inputs.Sair):
                         apresentarMenu = false;
