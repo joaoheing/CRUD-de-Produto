@@ -25,9 +25,10 @@ namespace MvcHub
         public void Listar()
         {
             List<Produto> produtos = banco.Listar();
+            Console.WriteLine("\tID\tNome\tPreço");
             foreach (Produto p in produtos)
             {
-                Console.WriteLine("\t{0}\t{1}\t{2}", p.ID, p.Nome, p.Preco);
+                Console.WriteLine("\t{0}\t{1}\t{2}", p.ID, p.Nome,p.Preco);
             }
         }
 
@@ -42,18 +43,18 @@ namespace MvcHub
 
         public void Remover(){
             Console.WriteLine("Digite o id do produto que deseja excluir");
-            int numero = int.Parse(Console.ReadLine());
-            banco.Remover(numero);
+            int id = int.Parse(Console.ReadLine());
+            banco.Remover(id);
         }
 
         public void Editar(){
             Console.WriteLine("Digite o id do produto que deseja editar");
-            int numero = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Digite o novo nome");
             string nome = Console.ReadLine();
             Console.WriteLine("Digite o novo preço");
             double preco = Math.Round(double.Parse(Console.ReadLine()),2);
-            banco.Editar(numero,nome,preco);
+            banco.Editar(id,nome,preco);
         }
 
         public void ApresentarMenu()
@@ -69,8 +70,15 @@ namespace MvcHub
                 Console.WriteLine("4- Excluir um produto");
                 Console.WriteLine("5- Sair");
                 Console.WriteLine("\n");
+                
+                int InputUsuario ;
 
-                int InputUsuario = int.Parse(Console.ReadLine());
+                try{
+                    InputUsuario = int.Parse(Console.ReadLine());
+                }catch{
+                    InputUsuario = 0;
+                }
+                    
 
                 switch (InputUsuario)
                 {
@@ -88,6 +96,9 @@ namespace MvcHub
                         break;
                     case ((int)Inputs.Sair):
                         apresentarMenu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Por favor insira um número válido");
                         break;
                 }
                 Console.WriteLine("\n");

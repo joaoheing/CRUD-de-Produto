@@ -14,11 +14,5 @@ namespace MvcProduto.Models
             this.Nome = nome;
             this.Preco = preco;
         }
-        public Produto(string nome, double preco)
-        {
-            this.Nome = nome;
-            this.Preco = preco;
-        }
-
     }
 }

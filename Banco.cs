@@ -6,6 +6,7 @@ using MvcProduto.Models;
 class Banco
 {
     string connectionString = @"Data Source=DESKTOP-GLVR6K1;Initial Catalog=TesteIBID;Integrated Security=True";
+    
     public List<Produto> Listar()
     {
         List<Produto> produtos = new List<Produto>();
